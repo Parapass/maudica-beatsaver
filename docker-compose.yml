@@ -33,7 +33,7 @@ services:
       - esdata:/usr/share/elasticsearch/data:rw
 
   client:
-    image: lolpants/beatsaver-reloaded:client-latest
+    image: parapass/loadica:client-latest
     build: client
     restart: always
     networks:
@@ -42,7 +42,7 @@ services:
       - 8000:1234
 
   server:
-    image: lolpants/beatsaver-reloaded:server-latest
+    image: parapass/loadica:server-latest
     build: server
     restart: always
     depends_on:
@@ -59,7 +59,7 @@ services:
       - 3000:3000
 
   docs:
-    image: lolpants/beatsaver-reloaded:docs-latest
+    image: parapass/loadica:docs-latest
     build: docs
     restart: always
     ports:
