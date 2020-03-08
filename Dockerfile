@@ -26,7 +26,7 @@ COPY --from=builder --chown=node:node /usr/app/dist/ssr ./build
 
 ARG VCS_REF
 LABEL org.label-schema.vcs-ref=$VCS_REF \
-  org.label-schema.vcs-url="https://github.com/lolPants/beatsaver-reloaded"
+  org.label-schema.vcs-url="https://github.com/parapass/loadica"
 
 ENTRYPOINT ["/sbin/tini", "--"]
 EXPOSE 1234
