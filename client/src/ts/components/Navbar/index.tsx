@@ -81,25 +81,13 @@ const Navbar: FunctionComponent<IProps> = ({ user, logout, push }) => {
             </NavbarItem>
             <NavbarDivider />
 
-            <NavbarItemExt href='https://bsaber.com'>BeastSaber</NavbarItemExt>
+            <NavbarItemExt href='https://maudica.com'>MAudica</NavbarItemExt>
 
-            <NavbarItemExt href='https://scoresaber.com'>
-              ScoreSaber
-            </NavbarItemExt>
 
-            <NavbarDropdown label='Modding'>
-              <NavbarItemExt href='https://bsmg.wiki/beginners-guide'>
-                Modding Guide
-              </NavbarItemExt>
-
-              <NavbarItemExt href='https://discord.gg/beatsabermods'>
+              <NavbarItemExt href='https://discord.gg/cakQUt5'>
                 Modding Discord
               </NavbarItemExt>
 
-              <NavbarItemExt href='https://bsmg.wiki/'>
-                Community Wiki
-              </NavbarItemExt>
-            </NavbarDropdown>
           </div>
 
           <div className='navbar-end'>
