@@ -356,7 +356,7 @@ const BeatmapDetail: FunctionComponent<IProps> = ({
           >
             Download
           </a>
-          <a href={`beatsaver://${map.key}`}>OneClick&trade; Install</a>
+          <a href={`audica://${map.key}`}>OneClick&trade; Install</a>
           <a
             href='/'
             className={clsx(
