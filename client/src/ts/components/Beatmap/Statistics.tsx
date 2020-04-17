@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { formatDate } from '../../utils/formatDate'
 import { Statistic } from './Statistic'
+import { Leaderboards } from './Leaderboards'
 
 interface IStatsProps {
   map: IMapStats
@@ -110,3 +111,5 @@ const convertSecondsToTime: (duration: number) => string = duration => {
 
   return hours > 0 ? `${HH}:${MM}:${SS}` : `${MM}:${SS}`
 }
+
+const leaderboard: (map: IMapLeaderboard | IBeatmap)
