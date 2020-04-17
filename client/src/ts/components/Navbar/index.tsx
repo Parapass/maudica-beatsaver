@@ -81,7 +81,7 @@ const Navbar: FunctionComponent<IProps> = ({ user, logout, push }) => {
             </NavbarItem>
             <NavbarDivider />
 
-            <NavbarItemExt href='https://maudica.com'>MAudica</NavbarItemExt>
+            <NavbarItemExt href='https://github.com/Mettra/AudicaModLoader/releases/latest'>Audica Mod Loader</NavbarItemExt>
 
 
               <NavbarItemExt href='https://discord.gg/cakQUt5'>
