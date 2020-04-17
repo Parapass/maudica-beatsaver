@@ -33,7 +33,7 @@ services:
       - esdata:/usr/share/elasticsearch/data:rw
 
   client:
-    image: parapass/loadica:client-latest
+    image: parapass/maudica-beatsaver:client-latest
     build: client
     restart: always
     networks:
@@ -42,7 +42,7 @@ services:
       - 8000:1234
 
   server:
-    image: parapass/loadica:server-latest
+    image: parapass/maudica-beatsaver:server-latest
     build: server
     restart: always
     depends_on:
@@ -59,7 +59,7 @@ services:
       - 3000:3000
 
   docs:
-    image: parapass/loadica:docs-latest
+    image: parapass/maudica-beatsaver:docs-latest
     build: docs
     restart: always
     ports:
