@@ -89,11 +89,10 @@ const BeatmapResult: FunctionComponent<IProps> = ({
 
           <DiffTags
             style={{ marginBottom: 0 }}
-            easy={map.metadata.difficulties.easy}
-            normal={map.metadata.difficulties.normal}
-            hard={map.metadata.difficulties.hard}
+            beginner={map.metadata.difficulties.beginner}
+            standard={map.metadata.difficulties.standard}
+            advanced={map.metadata.difficulties.advanced}
             expert={map.metadata.difficulties.expert}
-            expertPlus={map.metadata.difficulties.expertPlus}
           />
 
           <div className='tags'>
@@ -137,7 +136,7 @@ const BeatmapResult: FunctionComponent<IProps> = ({
                 ? 'Playback error!'
                 : 'Stop Preview'}
             </a>
-            <a href={`beatsaver://${map.key}`}>OneClick&trade;</a>
+            <a href={`audica://${map.key}`}>OneClick&trade;</a>
             <a
               href='/'
               onClick={e => {
