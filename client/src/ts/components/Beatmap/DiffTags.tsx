@@ -5,25 +5,22 @@ interface IProps {
   normal?: boolean
   hard?: boolean
   expert?: boolean
-  expertPlus?: boolean
 
   style?: CSSProperties
 }
 
 export const DiffTags: FunctionComponent<IProps> = ({
-  easy,
-  normal,
-  hard,
+  beginner,
+  standard,
+  advanced,
   expert,
-  expertPlus,
 
   style,
 }) => (
   <div className='tags' style={style}>
-    {easy ? <span className='tag is-easy'>Easy</span> : null}
-    {normal ? <span className='tag is-normal'>Normal</span> : null}
-    {hard ? <span className='tag is-hard'>Hard</span> : null}
+    {beginner ? <span className='tag is-beginner'>Beginner</span> : null}
+    {standard ? <span className='tag is-standard'>Standard</span> : null}
+    {advanced ? <span className='tag is-advanced'>Advanced</span> : null}
     {expert ? <span className='tag is-expert'>Expert</span> : null}
-    {expertPlus ? <span className='tag is-expert-plus'>Expert+</span> : null}
   </div>
 )
