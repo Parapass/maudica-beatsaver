@@ -1,9 +1,9 @@
 import React, { CSSProperties, FunctionComponent } from 'react'
 
 interface IProps {
-  easy?: boolean
-  normal?: boolean
-  hard?: boolean
+  beginner?: boolean
+  standard?: boolean
+  advanced?: boolean
   expert?: boolean
 
   style?: CSSProperties
