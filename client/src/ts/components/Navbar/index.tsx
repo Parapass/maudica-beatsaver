@@ -8,7 +8,7 @@ import { NavbarDropdown, NavbarDropdownDivider } from './NavbarDropdown'
 import { NavbarClickableItem, NavbarItem, NavbarItemExt } from './NavbarItem'
 
 import clsx from 'clsx'
-import Logo from '../../../images/maudica_logo_white.png'
+import Logo from '../../../images/maudica_logo.png'
 
 interface IProps {
   user: IUser | null | undefined
