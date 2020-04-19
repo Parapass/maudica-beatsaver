@@ -87,7 +87,7 @@ export const parseBeatmap: (
   const audioType = fileType(audio)
   if (
     audioType === undefined ||
-    (audioType.mime !== 'audio/ogg' && audioType.mime !== 'audio/wav')
+    (audioType.mime !== 'audio/mogg' && audioType.mime !== 'audio/wav')
   ) {
     throw ERR_BEATMAP_AUDIO_INVALID
   }
@@ -185,11 +185,10 @@ export const parseBeatmap: (
 
     return {
       difficulties: {
-        easy,
+        beginner,
         expert,
-        expertPlus,
-        hard,
-        normal,
+        advanced,
+        standardl,
       },
 
       name: set._beatmapCharacteristicName,
