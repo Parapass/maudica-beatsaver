@@ -49,7 +49,7 @@ export const Uploader: FunctionComponent<RouteComponentProps<IParams>> = ({
   return (
     <>
       <Helmet>
-        <title>BeatSaver - Beatmaps by {user.username}</title>
+        <title>MAudica - Beatmaps by {user.username}</title>
       </Helmet>
 
       <div className='thin'>
