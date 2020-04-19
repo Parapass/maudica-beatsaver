@@ -162,11 +162,11 @@ const Upload: FunctionComponent<IProps> = ({ user, push, replace }) => {
           return setFileErr('Beatmap already exists!')
 
         case 'ERR_BEATMAP_INFO_NOT_FOUND':
-          setFileErr('Beatmap does not contain an info.dat file!')
+          setFileErr('Beatmap does not contain an song.desc file!')
           return showProblems()
 
         case 'ERR_BEATMAP_INFO_INVALID':
-          setFileErr('Beatmap info.dat file is invalid!')
+          setFileErr('Beatmap song.desc file is invalid!')
           return showProblems()
 
         case 'ERR_BEATMAP_COVER_NOT_FOUND':
@@ -252,7 +252,7 @@ const Upload: FunctionComponent<IProps> = ({ user, push, replace }) => {
         label='Beatmap ZIP'
         errorLabel={fileErr}
         file={file}
-        accept='application/zip, .bsl'
+        accept='application/audica, .bsl'
         onChange={f => {
           setFileErr(undefined)
           setFile(f)
@@ -301,14 +301,14 @@ const SwalContent: FunctionComponent = () => (
         Rights to publish any additional content included in the beatmap zip
       </li>
       <li>
-        Permission to grant BeatSaver distribution rights to all files contained
+        Permission to grant MAudica distribution rights to all files contained
         within the beatmap zip
       </li>
     </ul>
 
     <p>
       By clicking accept, you agree to grant BeatSaver rights to publish and
-      distribute this beatmap and everything contained within the zip.
+      distribute this beatmap and everything contained within the .audica file.
     </p>
   </div>
 )
