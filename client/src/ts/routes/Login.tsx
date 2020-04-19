@@ -47,7 +47,7 @@ const Login: FunctionComponent<IProps> = ({ login, push }) => {
   return (
     <div className='thin'>
       <Helmet>
-        <title>BeatSaver - Login</title>
+        <title>MAudica - Login</title>
       </Helmet>
 
       <h1 className='has-text-centered is-size-3 has-text-weight-semibold'>
