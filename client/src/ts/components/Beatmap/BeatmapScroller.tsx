@@ -54,7 +54,7 @@ export const BeatmapScroller: FunctionComponent<IProps> = ({
     <>
       {title === undefined ? null : (
         <Helmet>
-          <title>BeatSaver - {title}</title>
+          <title>MAudica - {title}</title>
         </Helmet>
       )}
 
