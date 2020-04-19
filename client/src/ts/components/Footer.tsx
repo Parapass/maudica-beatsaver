@@ -13,7 +13,7 @@ export const Footer: FunctionComponent = () => (
           <Link to='/legal/privacy'>Privacy</Link>
         </li>
         <li>
-          <ExtLink href='https://github.com/lolPants/beatsaver-reloaded'>
+          <ExtLink href='https://github.com/maudica/maudica-beatsaver'>
             GitHub
           </ExtLink>
         </li>
