@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { formatDate } from '../../utils/formatDate'
 import { Statistic } from './Statistic'
-import { Leaderboards } from './Leaderboards'
 
 interface IStatsProps {
   map: IMapStats
