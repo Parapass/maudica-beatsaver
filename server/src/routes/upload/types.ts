@@ -77,11 +77,10 @@ declare interface IParsedBeatmap {
     bpm: number
 
     difficulties: {
-      easy: boolean
-      normal: boolean
-      hard: boolean
+      beginner: boolean
+      standard: boolean
+      advanced: boolean
       expert: boolean
-      expertPlus: boolean
     }
 
     characteristics: IBeatmapCharacteristic[]
