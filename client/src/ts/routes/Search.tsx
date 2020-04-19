@@ -42,7 +42,7 @@ const Search: FunctionComponent<IProps> = ({ pathname, queryStr, replace }) => {
         <IconInput
           value={query}
           onChange={v => search(v)}
-          placeholder='Search BeatSaver'
+          placeholder='Search for your waifus theme song'
           iconClass='fas fa-search'
         />
       </div>
