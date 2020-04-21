@@ -13,7 +13,7 @@ export const TextPage: FunctionComponent<IProps> = ({
 }) => (
   <>
     <Helmet>
-      <title>{pageTitle || 'BeatSaver'}</title>
+      <title>{pageTitle || 'MAudica'}</title>
     </Helmet>
 
     <div className='thin'>
