@@ -38,7 +38,7 @@ export const parseBeatmap: (
 ) => Promise<{
   parsed: IParsedBeatmap
   cover: Buffer
-  zip: Buffer
+  audica: Buffer
 }> = async zipBuf => {
   const audica = new JSZip()
   await audica.loadAsync(zipBuf)
@@ -87,18 +87,18 @@ export const parseBeatmap: (
   if (ext === '.ogg') {
     const moggName = `${name}.mogg`
 
-    audica.remove(infoJSON._songFilename)
+    audica.remove(songDESC._songFilename)
     audica.file(moggName, audio)
 
-    infoJSON._songFilename = `${name}.egg`
+    infoJSON._songFilename = `${name}.mogg`
     infoDAT = `${JSON.stringify(infoJSON, null, 2)}\n`
 
     audica.remove(songDESCName)
-    audica.file(songDESCName, infoDAT)
+    audica.file(songDESCName, songDESC)
   }
 
   const difficulties = ([] as IDifficultyBeatmap[]).concat(
-    ...infoJSON._difficultyBeatmapSets.map(x => x._difficultyBeatmaps)
+    ...songDESC._difficultyBeatmapSets.map(x => x._difficultyBeatmaps)
   )
 
   for (const diff of difficulties) {
