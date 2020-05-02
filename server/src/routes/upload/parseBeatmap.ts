@@ -40,19 +40,19 @@ export const parseBeatmap: (
   cover: Buffer
   zip: Buffer
 }> = async zipBuf => {
-  const zip = new JSZip()
-  await zip.loadAsync(zipBuf)
+  const audica = new JSZip()
+  await audica.loadAsync(zipBuf)
 
-  const files = Object.values(zip.files)
+  const files = Object.values(audica.files)
   await Promise.all(files.map(x => inspectFile(x)))
 
-  const info = zip.file('info.dat') || zip.file('Info.dat')
+  const info = audica.file('song.desc') || audica.file('song.desc')
   if (info === null) throw ERR_BEATMAP_INFO_NOT_FOUND
   const infoDATName = info.name
 
-  let infoDAT = await info.async('text')
+  let songDESC = await info.async('text')
   if (!validJSON(infoDAT)) throw ERR_BEATMAP_INFO_INVALID
-  const infoJSON: IBeatmapInfo = JSON.parse(infoDAT)
+  const infoJSON: IBeatmapInfo = JSON.parse(songDESC)
 
   const validateInfo = await schemas.compile(SCHEMA_INFO)
   const infoValid = validateInfo(infoJSON)
@@ -60,9 +60,9 @@ export const parseBeatmap: (
     parseValidationError(info.name, validateInfo.errors)
   }
 
-  const coverEntry = zip.file(infoJSON._coverImageFilename)
+  const coverEntry = audica.file(songDESC._coverImageFilename)
   if (coverEntry === null) {
-    throw ERR_BEATMAP_COVER_NOT_FOUND(infoJSON._coverImageFilename)
+    throw ERR_BEATMAP_COVER_NOT_FOUND(songDESC._coverImageFilename)
   }
 
   const cover = await coverEntry.async('nodebuffer')
@@ -78,32 +78,23 @@ export const parseBeatmap: (
   if (size.width !== size.height) throw ERR_BEATMAP_COVER_NOT_SQUARE
   if (size.width < 256 || size.height < 256) throw ERR_BEATMAP_COVER_TOO_SMOL
 
-  const audioEntry = zip.file(infoJSON._songFilename)
+  const audioEntry = audica.file(infoJSON.moggSong)
   if (audioEntry === null) {
-    throw ERR_BEATMAP_AUDIO_NOT_FOUND(infoJSON._songFilename)
+    throw ERR_BEATMAP_AUDIO_NOT_FOUND(infoJSON.moggSong)
   }
 
-  const audio = await audioEntry.async('nodebuffer')
-  const audioType = fileType(audio)
-  if (
-    audioType === undefined ||
-    (audioType.mime !== 'audio/mogg' && audioType.mime !== 'audio/wav')
-  ) {
-    throw ERR_BEATMAP_AUDIO_INVALID
-  }
-
-  const { name, ext } = parse(infoJSON._songFilename)
+  const { name, ext } = parse(songDESC._songFilename)
   if (ext === '.ogg') {
-    const eggName = `${name}.egg`
+    const moggName = `${name}.mogg`
 
-    zip.remove(infoJSON._songFilename)
-    zip.file(eggName, audio)
+    audica.remove(infoJSON._songFilename)
+    audica.file(moggName, audio)
 
     infoJSON._songFilename = `${name}.egg`
     infoDAT = `${JSON.stringify(infoJSON, null, 2)}\n`
 
-    zip.remove(infoDATName)
-    zip.file(infoDATName, infoDAT)
+    audica.remove(songDESCName)
+    audica.file(songDESCName, infoDAT)
   }
 
   const difficulties = ([] as IDifficultyBeatmap[]).concat(
