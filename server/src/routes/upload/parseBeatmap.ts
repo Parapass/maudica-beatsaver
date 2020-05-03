@@ -51,18 +51,18 @@ export const parseBeatmap: (
   const infoDATName = info.name
 
   let songDESC = await info.async('text')
-  if (!validJSON(infoDAT)) throw ERR_BEATMAP_INFO_INVALID
+  if (!validJSON(songDESC)) throw ERR_BEATMAP_INFO_INVALID
   const infoJSON: IBeatmapInfo = JSON.parse(songDESC)
 
   const validateInfo = await schemas.compile(SCHEMA_INFO)
-  const infoValid = validateInfo(infoJSON)
+  const infoValid = validateInfo(songDESC)
   if (infoValid === false) {
     parseValidationError(info.name, validateInfo.errors)
   }
 
-  const coverEntry = audica.file(songDESC._coverImageFilename)
+  const coverEntry = audica.file(songDESC.image)
   if (coverEntry === null) {
-    throw ERR_BEATMAP_COVER_NOT_FOUND(songDESC._coverImageFilename)
+    throw ERR_BEATMAP_COVER_NOT_FOUND(songDESC.image)
   }
 
   const cover = await coverEntry.async('nodebuffer')
@@ -78,20 +78,20 @@ export const parseBeatmap: (
   if (size.width !== size.height) throw ERR_BEATMAP_COVER_NOT_SQUARE
   if (size.width < 256 || size.height < 256) throw ERR_BEATMAP_COVER_TOO_SMOL
 
-  const audioEntry = audica.file(infoJSON.moggSong)
+  const audioEntry = audica.file(songDESC.moggSong)
   if (audioEntry === null) {
-    throw ERR_BEATMAP_AUDIO_NOT_FOUND(infoJSON.moggSong)
+    throw ERR_BEATMAP_AUDIO_NOT_FOUND(songDESC.moggSong)
   }
 
-  const { name, ext } = parse(songDESC._songFilename)
+  const { name, ext } = parse(songDESC.moggSong)
   if (ext === '.ogg') {
     const moggName = `${name}.mogg`
 
-    audica.remove(songDESC._songFilename)
+    audica.remove(songDESC.moggSong)
     audica.file(moggName, audio)
 
-    infoJSON._songFilename = `${name}.mogg`
-    infoDAT = `${JSON.stringify(infoJSON, null, 2)}\n`
+    infoJSON.moggSong = `${name}.mogg`
+    songDESC = `${JSON.stringify(infoJSON, null, 2)}\n`
 
     audica.remove(songDESCName)
     audica.file(songDESCName, songDESC)
@@ -102,7 +102,7 @@ export const parseBeatmap: (
   )
 
   for (const diff of difficulties) {
-    const diffEntry = zip.file(diff._beatmapFilename)
+    const diffEntry = audica.file(diff._beatmapFilename)
     if (diffEntry === null) {
       throw ERR_BEATMAP_DIFF_NOT_FOUND(diff._beatmapFilename)
     }
