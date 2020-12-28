@@ -20,6 +20,9 @@ export const Footer: FunctionComponent = () => (
         <li>
           <Link to='/legal/license'>License</Link>
         </li>
+        <li>
+          <Link to='/contact'>Contact</Link>
+        </li>
       </ul>
     </div>
   </footer>
